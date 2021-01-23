@@ -25,7 +25,12 @@ public class EmployeeService {
 		
 		// Get all employees and set them in the DTO to return for the front-end
 		List<Employee> employees = employeeRepository.findAll();
-		employees.forEach(e -> result.add(new EmployeeDTO(e.getFirstName(), e.getLastName(), e.getEmailId()))); 
+		employees.forEach(e -> result.add(new EmployeeDTO(
+												e.getFirstName(), 
+												e.getLastName(), 
+												e.getEmailId(), 
+												e.getDateRegister(),
+												e.getSalary()))); 
 		 
 		return result;
 	}
@@ -36,6 +41,8 @@ public class EmployeeService {
 		employee.setEmailId(employeeDTO.getEmailId());
 		employee.setFirstName(employeeDTO.getFirstName());
 		employee.setLastName(employeeDTO.getLastName());
+		employee.setDateRegister(employeeDTO.getDateRegister());
+		employee.setSalary(employeeDTO.getSalary());
 		
 		return employeeRepository.save(employee);
 	}
@@ -50,7 +57,13 @@ public class EmployeeService {
 			result = new EmployeeDTO();
 		
 		} else {
-			result = new EmployeeDTO(employee.getFirstName(), employee.getLastName(), employee.getEmailId());
+			result = new EmployeeDTO(
+						employee.getFirstName(), 
+						employee.getLastName(), 
+						employee.getEmailId(), 
+						employee.getDateRegister(),
+						employee.getSalary()
+					);
 		}
 
 		return result;
@@ -68,7 +81,11 @@ public class EmployeeService {
         final Employee updatedEmployee = employeeRepository.save(employee);
 		
 		EmployeeDTO result = new EmployeeDTO(
-				updatedEmployee.getFirstName(), updatedEmployee.getLastName(), updatedEmployee.getEmailId());
+									updatedEmployee.getFirstName(), 
+									updatedEmployee.getLastName(), 
+									updatedEmployee.getEmailId(), 
+									updatedEmployee.getDateRegister(),
+									updatedEmployee.getSalary());
 		
 		return result;
 	}

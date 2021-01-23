@@ -1,5 +1,8 @@
 package com.example.crud.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,4 +35,10 @@ public class Employee {
     
 	@Column(name = "email_address", nullable = false)
     private String emailId;
+	
+	@Column(name = "date_register", columnDefinition = "DATE")
+	private LocalDate dateRegister;
+	
+	@Column(name = "salary")
+	private BigDecimal salary;
 }
